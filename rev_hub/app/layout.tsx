@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
     title: 'RevHub',
@@ -10,11 +11,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body>
-                <p>l1</p>
                 <div>
 
                 {children}
+                <p>l1</p>
                 </div>
+                <Footer banane={5} mele={10} />
             </body>
         </html>
     )
