@@ -10,12 +10,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body>
-                <div>
-
+            <body className="min-h-screen flex flex-col justify-between">
                 {children}
-                <p>l1</p>
-                </div>
                 <Footer banane={5} mele={10} />
             </body>
         </html>

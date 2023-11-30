@@ -45,15 +45,15 @@ export default function Home() {
     else
         return (
             <main className="flex flex-col items-center p-8">
-                <h1>RevHub</h1>
+                <h1 className="text-[50px] font-bold">RevHub</h1>
                 <p>ciao</p>
                 <p>numero = {numero}</p>
-                <button className="border-2 border-gray-600 p-2" onClick={() => {
+                <button className="border-2 border-gray-600 p-2 my-2" onClick={() => {
                     setNumero(numero + 1)
                     console.log(numero + 1)
                 }}>+</button>
 
-                <button className="border-2 border-gray-600 p-2" onClick={() => {
+                <button className="border-2 border-gray-600 p-2 my-2" onClick={() => {
                     setNumero1(numero1 + 1)
                     console.log(numero1 + 1)
                 }}>+1</button>
@@ -67,7 +67,7 @@ export default function Home() {
                     )
                 })}
 
-                <button className="border-2 border-gray-600 p-2" onClick={() => {
+                <button className="border-2 border-gray-600 p-2 mt-6" onClick={() => {
                     axios.get("api/example/2").then((res) => {
                         console.log(res.data)
                     }).catch((error) => {
