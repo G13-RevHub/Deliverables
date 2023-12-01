@@ -13,8 +13,7 @@ export default async function Page({params} : {params:any}) {
         <main className="flex flex-col min-h-screen items-center p-8">
             <div>
               <h2 className="title">{tick.title}</h2>
-              <p className="author">{tick.author}</p> 
-              <p>- {tick.data}</p>
+              <p className="author">{tick.author} - {tick.data}</p>
               <p className="tag">{tick.tag}</p>
               <p className="body">{tick.body}</p>
 

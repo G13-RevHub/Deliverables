@@ -1,11 +1,21 @@
-"use client"
+async function getPage(id: number) {
+  return id
+}
 
-export default function ID({params} : {params:number}) {
-    const id = params
+async function getTicket(id: number) {
+  const tres = await fetch('http://localhost:4000/tickets/' + id)
+  
+  return tres.json()
+}
+
+export default async function Page({params} : {params:any}) {
+  const id = await getPage(params.id)
+  const tick = await getTicket(params.id)
   
     return (
-      <main className="">
-            <h1>{id}</h1>
+      <main>
+            <h1>ID Author: {id}</h1>
+            <p>Body: {tick.body}</p>
       </main>
     )
-  }
+}
