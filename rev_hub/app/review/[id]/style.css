@@ -1,19 +1,11 @@
-//recensione
-.title{}
-
-.data{}
-
-.author{}
-
-.commenti-div{}
+/* recensione */
 
 .tag{
     color: #25c430;
 }
 
-.body{}
 
-//commenti
+/* commenti */
 .container{
     margin-top:15px;
     margin-bottom: 150px;
@@ -66,7 +58,7 @@ button.primaryContained:hover{
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 
-.like__btn {
+.like_btn {
   padding: 10px 15px;
   background: #0080ff;
   font-size: 18px;

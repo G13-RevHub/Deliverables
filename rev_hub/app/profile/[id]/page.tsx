@@ -1,21 +1,18 @@
-async function getPage(id: number) {
-  return id
-}
+import Link from "next/link";
 
-async function getTicket(id: number) {
-  const tres = await fetch('http://localhost:4000/tickets/' + id)
-  
-  return tres.json()
-}
 
-export default async function Page({params} : {params:any}) {
-  const id = await getPage(params.id)
-  const tick = await getTicket(params.id)
-  
+export default async function Page({ params }: { params: { id: number } }) {
+
     return (
-      <main>
-            <h1>ID Author: {id}</h1>
-            <p>Body: {tick.body}</p>
-      </main>
+        <main>
+            <h1>Username: Bonifacio</h1>
+
+            <h2>User Reviews: </h2>
+            <div className="flex flex-col space-y-3">
+                <Link href="/review/1">link a review 1 dell'utente</Link>
+                <Link href="/review/2">link a review 2 dell'utente</Link>
+                <Link href="/review/3">link a review 3 dell'utente</Link>
+            </div>
+        </main>
     )
 }
