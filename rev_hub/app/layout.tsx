@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className="min-h-screen flex flex-col justify-between">
                 <Navbar/>
                 {children}
-                <Footer banane={5} mele={10} />
+                <Footer/>
             </body>
         </html>
     )
