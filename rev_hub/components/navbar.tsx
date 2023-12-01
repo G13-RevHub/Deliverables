@@ -8,8 +8,8 @@ export default function Footer() {
           <li><a href="/">Home</a></li>
           <li><a href="/profile/42">Profilo</a></li>
           <li><a href="/search">Cerca</a></li>
-          <li><a href="/review/69">Recensioni</a></li>
-          <li><a href="/create">Crea</a></li>
+          <li><a href="/review/1">Recensioni</a></li>
+          <li><a href="/review/create">Crea</a></li>
       </ul>
 	</header> 
 

@@ -1,7 +1,5 @@
+//questo è un componente esterno, per separare la parte client e server
 "use client"
-
-import { useRouter } from "next/navigation"
-import { useState } from "react"
 
 export default function CreateList() {
 

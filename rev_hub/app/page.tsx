@@ -32,7 +32,7 @@ export default function Home() {
         //esegue la funzione passatagli come parametro allo scadere del timeout, che in questo caso è di 2000 ms
         setTimeout(() => {
             setLoading(false)
-        }, 2000)
+        }, 1000)
     })
 
     if (loading)
@@ -45,6 +45,14 @@ export default function Home() {
     else
         return (
             <main className="flex flex-col items-center p-8">
+                <h1 className="text-[25px] font-bold">Recensioni più viste</h1>
+                {lista.map((value, id) => {
+                    return (
+                        <p key={id}>value = {value}</p>
+                    )
+                })}
+            </main>
+            /*<main className="flex flex-col items-center p-8">
                 <h1 className="text-[50px] font-bold">RevHub</h1>
                 <p>ciao</p>
                 <p>numero = {numero}</p>
@@ -75,6 +83,6 @@ export default function Home() {
                         console.log("l'errore è il seguente:", error)
                     })
                 }}>bottone del divertimento</button>
-            </main>
+            </main>*/
         )
 }
