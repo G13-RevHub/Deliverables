@@ -22,7 +22,9 @@ export default function Register() {
             console.log(res.data)
             setLoading(false)
         }).catch(e => {
+            setLoading(false)
             console.log("something went wrong", e)
+            alert("errore api")
         })
     }, [])
 
