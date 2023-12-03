@@ -1,32 +1,18 @@
 "use client"
 
-import axios from "axios"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function Home() {
-    const [numero, setNumero] = useState(0)
-    const [numero1, setNumero1] = useState(0)
     const [loading, setLoading] = useState(true)
 
     const lista = [1, 2, 3, 4, 5]
-
-    const data = {
-        stringa: "string"
-    }
+    
     useEffect(() => {
         if (loading) return
 
-        console.log("sei bello")
-        axios.post("api/example/1", data).then((res) => {
-            console.log(res.data)
-        }).catch((error) => {
-            console.log("si è verificato un errore")
-            console.log("l'errore è il seguente:", error)
-        })
-        lista.forEach((v) => {
-            console.log(v)
-        })
-    }, [numero])
+        
+    }, [])
 
     useEffect(() => {
         //esegue la funzione passatagli come parametro allo scadere del timeout, che in questo caso è di 2000 ms
@@ -34,6 +20,11 @@ export default function Home() {
             setLoading(false)
         }, 1000)
     })
+
+    const handleSearchSubmit = (event: any) => {
+        event.preventDefault()
+
+    }
 
     if (loading)
         return (
@@ -44,45 +35,16 @@ export default function Home() {
         )
     else
         return (
-            <main className="flex flex-col items-center p-8">
+            <main className="flex flex-col p-8">
+                <form onSubmit={handleSearchSubmit} className="flex items-center space-x-3">
+                    <input type="text" name="term" required />
+                    <button type="submit" name="inviaterm" className="border-2 border-gray-600 py-0">Cerca</button>
+                </form>
+                
                 <h1 className="text-[25px] font-bold">Recensioni più viste</h1>
-                {lista.map((value, id) => {
-                    return (
-                        <p key={id}>value = {value}</p>
-                    )
-                })}
-            </main>
-            /*<main className="flex flex-col items-center p-8">
-                <h1 className="text-[50px] font-bold">RevHub</h1>
-                <p>ciao</p>
-                <p>numero = {numero}</p>
-                <button className="border-2 border-gray-600 p-2 my-2" onClick={() => {
-                    setNumero(numero + 1)
-                    console.log(numero + 1)
-                }}>+</button>
-
-                <button className="border-2 border-gray-600 p-2 my-2" onClick={() => {
-                    setNumero1(numero1 + 1)
-                    console.log(numero1 + 1)
-                }}>+1</button>
-                <p>prova_1_0</p>
-
-                <br />
-
-                {lista.map((value, id) => {
-                    return (
-                        <p key={id}>value = {value}</p>
-                    )
-                })}
-
-                <button className="border-2 border-gray-600 p-2 mt-6" onClick={() => {
-                    axios.get("api/example/2").then((res) => {
-                        console.log(res.data)
-                    }).catch((error) => {
-                        console.log("si è verificato un errore")
-                        console.log("l'errore è il seguente:", error)
-                    })
-                }}>bottone del divertimento</button>
-            </main>*/
+                {lista.map((value, id) => (
+                    <Link key={id} href={`/review/${value}`}> value = {value}</Link>
+                ))}
+            </main >
         )
 }

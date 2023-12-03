@@ -37,19 +37,16 @@ a {
 
 }
 .logo a,
-.main-nav a {
+.main-nav a, .main-nav button {
 	padding: 10px 15px;
 	text-transform: uppercase;
 	text-align: center;
 	display: block;
-}
-
-.main-nav a {
 	color: #34495e;
 	font-size: .99em;
 }
 
-.main-nav a:hover {
+.main-nav a:hover, .main-nav button:hover {
 	color: #718daa;
 }
 
@@ -63,18 +60,12 @@ a {
 	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-	/* -webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px; */
 }
 
 
 /* ================================= 
   Media Queries
 ==================================== */
-
-
-
 
 @media (min-width: 769px) {
 	.header,
@@ -86,7 +77,7 @@ a {
 		align-items: center;
     	.header{
 		width: 80%;
-		margin: 0 auto;
+		margin: 0;
 		max-width: 1150px;
 	}
 	}
