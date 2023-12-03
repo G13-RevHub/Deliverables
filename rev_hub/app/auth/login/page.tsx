@@ -1,6 +1,7 @@
 "use client"
 
 import axios from "axios"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -56,6 +57,7 @@ export default function Login() {
                     </label>
                     <button disabled={errorMessage !== "" || fetching} type="submit" className="border-2 border-gray-600 p-2 mt-6">Invia</button>
                 </form>
+                <Link href="/auth/register">Registrati</Link>
             </main>
         )
 } 
