@@ -8,7 +8,7 @@ export default function Navbar(params: { user_id: number | null, triggerer: { va
     const router = useRouter()
 
     return (
-        <header className="header">
+        <header className="header sticky">
             <h1 className="logo"><Link href="/">RevHub</Link></h1>
             <ul className="main-nav">
                 <li><Link href="/">Home</Link></li>

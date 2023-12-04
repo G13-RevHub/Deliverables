@@ -6,12 +6,12 @@ import { useEffect, useState } from "react"
 export default function Home() {
     const [loading, setLoading] = useState(true)
 
-    const lista = [1, 2, 3, 4, 5]
-    
+    const lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
     useEffect(() => {
         if (loading) return
 
-        
+
     }, [])
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function Home() {
                     <input type="text" name="term" required />
                     <button type="submit" name="inviaterm" className="border-2 border-gray-600 py-0">Cerca</button>
                 </form>
-                
+
                 <h1 className="text-[25px] font-bold">Recensioni più viste</h1>
                 {lista.map((value, id) => (
                     <Link key={id} href={`/review/${value}`}> value = {value}</Link>
