@@ -1,6 +1,7 @@
 "use client"
 
 import axios from "axios"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 export default function CreateCredenziali() {
@@ -9,6 +10,7 @@ export default function CreateCredenziali() {
     const [pass, setPass] = useState("")
     const [name, setName] = useState("")
     const [surname, setSurname] = useState("")
+    const router = useRouter()
 
     const handleSubmit = (event: any) => {
         event.preventDefault()
@@ -23,7 +25,8 @@ export default function CreateCredenziali() {
 
         console.log("sending:", data)
         axios.post("/api/hidden/createCredenziali", data).then(res => {
-            console.log(res.data)
+            console.log("created credential:", res.data)
+            router.push("/auth/login")
         }).catch(e => {
             console.log("errore: ", e)
         })

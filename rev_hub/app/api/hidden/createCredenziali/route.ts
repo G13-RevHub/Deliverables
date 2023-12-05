@@ -22,7 +22,7 @@ function isValidEmail(email: string): boolean {
  * @returns 
  */
 export async function POST(request: NextRequest) {
-    console.log("creating credentials")
+    console.log("trying to create new autority credential")
     try {
         const req_data = await request.json()
 
@@ -41,13 +41,15 @@ export async function POST(request: NextRequest) {
 
         const new_credential = new Credential(req_data)
         await new_credential.save()
+        console.log("Credential successfully created")
         return NextResponse.json(
             { message: "Credential created successfully", data: new_credential },
             { status: 201 }
         )
     } catch (error: any) {
+        console.log("an error occurred while creating new credentials: " + error.message, error)
         return NextResponse.json(
-            { message: error.message },
+            { message: "an error occurred while creating new credentials", error_message: error.message, error: error },
             { status: 400 }
         )
     }

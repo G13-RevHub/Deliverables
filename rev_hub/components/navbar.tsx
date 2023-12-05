@@ -11,7 +11,7 @@ export default function Navbar(params: { user_id: number | null, triggerer: { va
     return (
         <header className="header sticky">
             <h1 className="logo"><Link href="/">RevHub</Link></h1>
-            <Searchbar/>
+            <Searchbar />
             <ul className="main-nav">
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/hidden/createCredential">Create_Credential</Link></li>
