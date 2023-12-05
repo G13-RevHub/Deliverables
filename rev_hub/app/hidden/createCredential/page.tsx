@@ -26,7 +26,7 @@ export default function CreateCredenziali() {
         console.log("sending:", data)
         axios.post("/api/hidden/createCredenziali", data).then(res => {
             console.log("created credential:", res.data)
-            router.push("/auth/login")
+            router.push("/auth/register")
         }).catch(e => {
             console.log("errore: ", e)
         })
