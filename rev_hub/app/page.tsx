@@ -36,11 +36,6 @@ export default function Home() {
     else
         return (
             <main className="flex flex-col p-8">
-                <form onSubmit={handleSearchSubmit} className="flex items-center space-x-3">
-                    <input type="text" name="term" required />
-                    <button type="submit" name="inviaterm" className="border-2 border-gray-600 py-0">Cerca</button>
-                </form>
-
                 <h1 className="text-[25px] font-bold">Recensioni più viste</h1>
                 {lista.map((value, id) => (
                     <Link key={id} href={`/review/${value}`}> value = {value}</Link>
