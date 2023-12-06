@@ -40,6 +40,6 @@ export default function Home() {
                 {lista.map((value, id) => (
                     <Link key={id} href={`/review/${value}`}> value = {value}</Link>
                 ))}
-            </main >
+            </main>
         )
 }

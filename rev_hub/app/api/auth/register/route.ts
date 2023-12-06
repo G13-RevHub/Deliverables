@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 
         const newUser = new User(new_user_data)
         await newUser.save()
-        return NextResponse.json({ message: "User created successfully", data: newUser, tmp_p1: salt, tmp_p2: hashedPassword })
+        return NextResponse.json({ message: "User created successfully" })
     } catch (error: any) {
         return NextResponse.json(
             { message: error.message },

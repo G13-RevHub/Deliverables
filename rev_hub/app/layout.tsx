@@ -29,7 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Head>
             <body className="min-h-screen flex flex-col justify-between">
                 <Navbar user_id={curr_user_id} triggerer={{ value: updateTriggerer, trigger: triggerUpdate }} />
-                {children}
+                <div className="grow">
+                    {children}
+                </div>
                 <Footer />
             </body>
         </html>

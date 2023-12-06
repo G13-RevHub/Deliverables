@@ -36,6 +36,11 @@ export async function POST(request: NextRequest) {
             )
 
         const credential = await Credential.findOne({ email: req_data.email })
+        console.log(credential)
+        return NextResponse.json(
+            { message: "return", credential:credential },
+            { status: 400 }
+        )
         if (credential)
             throw new Error("Credentail already exists")
 

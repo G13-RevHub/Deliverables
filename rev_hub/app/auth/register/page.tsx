@@ -4,6 +4,8 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
 
+const organizations = ["UniTn", "Google"]
+
 export default function Register() {
     const [loading, setLoading] = useState(true)
     const [fetching, setFetching] = useState(false)
@@ -38,9 +40,13 @@ export default function Register() {
 
     const handleSubmit = (event: any) => {
         event.preventDefault()
-        if (org === "")
+        if (!organizations.includes(org) || email === "" || pass === "" || username === "") {
+            alert("Inserisci tutti i campi")
             return
+        }
+            
         setFetching(true)
+        router.prefetch("/auth/login")
 
         const data = {
             organization: org,
@@ -49,13 +55,12 @@ export default function Register() {
             username: username
         }
 
-        console.log("sending:", data)
+        //console.log("sending:", data)
         axios.post("/api/auth/register", data).then(res => {
-            console.log(res.data)
-            setRetPassw(res.data.password)
             router.push("/auth/login")
             setFetching(false)
         }).catch(e => {
+            alert(`Registrazione fallita. Account ${org} inesistente`)
             console.log("errore: ", e)
             setFetching(false)
         })
@@ -71,16 +76,14 @@ export default function Register() {
         return (
             <main className="">
                 <h2>Creazione di credenziali UniTn o Google per simulare l'uso di credenziali UniTn o Google per la creazione del profilo</h2>
-                <div>
-                    <p>new user password: {returnedPassword}</p>
-                </div>
                 <form className="w-3/4" onSubmit={handleSubmit}>
                     <label>
                         <span>Organizzazione:</span>
                         <select required name="organizzazione" onChange={event => setOrg(event.target.value)} defaultValue={"."} >
                             <option value="." disabled={true}>...</option>
-                            <option value="UniTn">UniTn</option>
-                            <option value="Google">Google</option>
+                            {organizations.map((organization, idk) => (
+                                <option key={idk} value={organization}>{organization}</option>
+                            ))}
                         </select>
                     </label>
                     <label>
