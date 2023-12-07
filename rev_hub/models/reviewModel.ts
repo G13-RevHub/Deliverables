@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IReview extends Document {
+interface IReview {
     id: number,
     title: string,
     author_id: number,
@@ -24,4 +24,4 @@ export const Review = new mongoose.Schema(
 )
 
 // if the model is already defined, use that model else create a new one
-export default mongoose.models.Review || mongoose.model<IReview>("Review", Review);
+export default mongoose.models.Review<IReview> || mongoose.model<IReview>("Review", Review);

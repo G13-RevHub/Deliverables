@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface ICredental extends Document {
+interface ICredental {
     organization: string,
     email: string,
     password: string,
@@ -18,4 +18,4 @@ export const Credental = new mongoose.Schema(
 )
 
 // if the model is already defined, use that model else create a new one
-export default mongoose.models.Credental || mongoose.model<ICredental>("Credental", Credental);
+export default mongoose.models.Credental<ICredental> || mongoose.model<ICredental>("Credental", Credental);

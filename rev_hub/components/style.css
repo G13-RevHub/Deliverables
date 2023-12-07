@@ -71,7 +71,6 @@ a {
 /* =================================
   Media Queries
 ==================================== */
-
 @media (min-width: 769px) {
 	.header,
 	.main-nav {
@@ -80,13 +79,13 @@ a {
 	.header {
 		flex-direction: column;
 		align-items: center;
-    	.header{
-		width: 80%;
+        
+	}
+    .header .header {
+        width: 80%;
 		margin: 0;
-		max-width: 1150px;
-	}
-	}
-
+		max-width: 1150px;  
+    }
 }
 
 @media (min-width: 1025px) {

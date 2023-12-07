@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IRate extends Document {
+interface IRate {
     author_id: number,
     review_id: number,
     rate: boolean
@@ -14,4 +14,4 @@ export const Rate = new mongoose.Schema (
 )
 
 // if the model is already defined, use that model else create a new one
-export default mongoose.models.Rate || mongoose.model<IRate>("Rate", Rate);
+export default mongoose.models.Rate<IRate> || mongoose.model<IRate>("Rate", Rate);

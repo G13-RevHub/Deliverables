@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IComment extends Document {
+interface IComment {
     id: number,
     author_id: number,
     text: string,
@@ -16,4 +16,4 @@ export const Comment = new mongoose.Schema (
 )
 
 // if the model is already defined, use that model else create a new one
-export default mongoose.models.Comment || mongoose.model<IComment>("Comment", Comment);
+export default mongoose.models.Comment<IComment> || mongoose.model<IComment>("Comment", Comment);

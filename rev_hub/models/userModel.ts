@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IUser extends Document {
+interface IUser {
     id: number,
     name: string,
     surname: string,
@@ -24,4 +24,4 @@ export const User = new mongoose.Schema(
 )
 
 // if the model is already defined, use that model else create a new one
-export default mongoose.models.User || mongoose.model<IUser>("User", User);
+export default mongoose.models.User<IUser> || mongoose.model<IUser>("User", User);
