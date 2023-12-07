@@ -3,16 +3,17 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-export default function SearchUser({ params }: { params: { text: string } }) {
+export default function SearchReview({ params }: { params: { type: string, text: string } }) {
+    const [results, setResults] = useState<any[]>([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const txt = params.text.replaceAll('@', '').replaceAll('#', '').replaceAll("%20", " ")
+        const txt = params.text.replaceAll('@', '').replaceAll('#', '').replaceAll("%20", " ").replaceAll("%22", '"')
         if (txt.length === 0) return
 
-        console.log(txt)
+        console.log(`searching ${txt} using ${params.type}`)
 
-        axios.get(`/api/search/user/${txt}`).then(res => {
+        axios.get(`/api/search/review/${txt}`).then(res => {
             console.log(res.data)
             setLoading(false)
         }).catch(error => {
@@ -30,8 +31,8 @@ export default function SearchUser({ params }: { params: { text: string } }) {
         )
     else
         return (
-            <main className="flex flex-col p-8 h-full">
-                <h1 className="text-[25px] font-bold">Search</h1>
+            <main className="flex flex-col p-8 w-full">
+                <h1 className="text-[25px] font-bold">Search Review</h1>
             </main>
         )
 }

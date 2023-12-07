@@ -37,8 +37,13 @@ export async function POST(request: NextRequest) {
 
         const credential = await Credential.findOne({ email: req_data.email })
         console.log(credential === null ? "valid new credential" : "user already exists ")
-        if (credential)
-            throw new Error("Credentail already exists")
+        if (credential) {
+            console.log("Credentail already exists")
+            return NextResponse.json(
+                { message: "Credentail already exists" },
+                { status: 401 }
+            )
+        }
 
         const new_credential = new Credential(req_data)
         await new_credential.save()

@@ -7,7 +7,6 @@ import { useState } from "react"
 
 export default function Login() {
     const [fetching, setFetching] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("")
     const [pass, setPass] = useState("")
     const [username, setUsername] = useState("")
     const router = useRouter()
@@ -55,7 +54,7 @@ export default function Login() {
                         <input required type="text" name="password" onChange={event => setPass(event.target.value)} value={pass} />
                         {/*<input required type="password" name="password" onChange={event => setPass(event.target.value)} value={pass} />*/}
                     </label>
-                    <button disabled={errorMessage !== "" || fetching} type="submit" className="border-2 border-gray-600 p-2 mt-6">Invia</button>
+                    <button disabled={fetching} type="submit" className="border-2 border-gray-600 p-2 mt-6">Invia</button>
                 </form>
                 <Link href="/auth/register">Registrati</Link>
             </main>

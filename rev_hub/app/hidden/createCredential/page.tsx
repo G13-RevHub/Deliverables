@@ -1,6 +1,7 @@
 "use client"
 
 import axios from "axios"
+import { errorToJSON } from "next/dist/server/render"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -25,6 +26,11 @@ export default function CreateCredenziali() {
 
         console.log("sending:", data)
         axios.post("/api/hidden/createCredenziali", data).then(res => {
+            if (res.status === 401) {
+                alert("credential already exists")
+                return
+            }
+
             console.log("created credential:", res.data)
             router.push("/auth/register")
         }).catch(e => {
