@@ -51,9 +51,8 @@ export async function POST(request: NextRequest) {
         // new user data
         var id = 1
         const users = await User.find({})
-        users.forEach(user => {
-            if (user.id > id) id = user.id + 1
-        })
+        const len = users.length
+        id = len + 1
         const new_user_data = {
             id: id,
             name: credential.name,
