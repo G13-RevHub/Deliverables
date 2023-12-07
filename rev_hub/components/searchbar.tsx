@@ -24,7 +24,9 @@ export default function Searchbar() {
     }
     return (
         <form onSubmit={handleSearchSubmit} className="py-1 px-3 w-4/5 mx-16 flex items-center space-x-3">
-            <input type="text" name="term" required value={text_to_search} onChange={e => setTextToSearch(e.target.value)} />
+            <input type="text" name="term"
+                   placeholder="@user / #tag / some text..."
+                   required value={text_to_search} onChange={e => setTextToSearch(e.target.value)} />
             <button type="submit" name="inviaterm" className="border-2 border-gray-600 py-0 text-gray-600">Cerca</button>
         </form>
     )
