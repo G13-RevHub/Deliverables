@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 /* base styles */
+.link_next {
+    text-decoration: underline;
+}
+
+.div_next {
+    text-align: center;
+}
+
 body {
     background: #ebf0fa;
     @apply text-gray-500 m-8;
