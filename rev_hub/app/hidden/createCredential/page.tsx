@@ -54,7 +54,7 @@ export default function CreateCredenziali() {
                 </label>
                 <label>
                     <span>Email:</span>
-                    <input required type="text" name="email" onChange={event => setEmail(event.target.value)} value={email} />
+                    <input required type="email" name="email" onChange={event => setEmail(event.target.value)} value={email} />
                 </label>
                 <label>
                     <span>Password:</span>
