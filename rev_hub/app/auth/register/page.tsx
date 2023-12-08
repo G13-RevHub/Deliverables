@@ -22,7 +22,7 @@ export default function Register() {
         axios.post("/api/testing/getTable", {type:"credentials"}).then(res => {console.log("existing credentials:", res.data)})
         axios.post("/api/testing/getTable", {type:"users"}).then(res => {console.log("registered users:", res.data)})
 
-        axios.get("/api/profile/getAllUsernames").then(res => {
+        axios.get("/api/user/getAllUsernames").then(res => {
             //console.log(res.data)
             setLoading(false)
         }).catch(e => {

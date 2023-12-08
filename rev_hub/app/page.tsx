@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 export default function Home() {
     const [loading, setLoading] = useState(true)
 
-    const lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    const lista = [1, 2, 3, 4, 5]
 
     useEffect(() => {
         if (loading) return
@@ -21,11 +21,6 @@ export default function Home() {
         }, 1000)
     })
 
-    const handleSearchSubmit = (event: any) => {
-        event.preventDefault()
-
-    }
-
     if (loading)
         return (
             <main className="flex flex-col items-center p-8">
@@ -38,7 +33,7 @@ export default function Home() {
             <main className="flex flex-col p-8">
                 <h1 className="text-[25px] font-bold">Recensioni più viste</h1>
                 {lista.map((value, id) => (
-                    <Link key={id} href={`/review/${value}`}> value = {value}</Link>
+                    <Link key={id} href={`/review/${value}`}>recensione {value}</Link>
                 ))}
             </main>
         )

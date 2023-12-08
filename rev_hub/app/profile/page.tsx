@@ -1,16 +1,21 @@
 "use client"
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+import { setUser } from "@/redux/store";
+import { useDispatch } from "react-redux";
 
 
 export default function Page() {
     const [loading, setLoading] = useState(true)
     const [user_data, setUserData] = useState<any>()
     const router = useRouter()
+    const reduxDispatcher = useDispatch();
 
     useEffect(() => {
-        axios.get("/api/profile").then(res => {
+        axios.get("/api/user").then(res => {
             //console.log(res.data)
             setUserData({
                 email: res.data.data.email,
@@ -20,7 +25,8 @@ export default function Page() {
             })
             setLoading(false)
         }).catch(err => {
-            console.log("error while obtaining profile data")
+            console.log("error while obtaining user data")
+            reduxDispatcher(setUser(null))
             router.push("/")
             setLoading(false)
         })

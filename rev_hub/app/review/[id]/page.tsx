@@ -1,9 +1,13 @@
+"use client"
+
+import Link from 'next/link'
 import './style.css'
 
-async function getReviews(id: number) {
+function getReviews(id: number) {
     const review = {
         title: `Review ${id}`,
         author: "auth 1",
+        author_id: 1,
         date: new Date("12-01-2023"),
         tags: [
             "#tag1",
@@ -11,25 +15,25 @@ async function getReviews(id: number) {
             "#tag3"
         ],
         text: `text of rev ${id}`,
-        comments: [
+        /*comments: [
             "comment 1",
             "comment 2",
             "comment 3",
             "comment 4",
             "comment 5"
-        ]
+        ]*/
     }
     return review
 }
 
-export default async function Page({ params }: { params: { id: number } }) {
-    const reviews = await getReviews(params.id)
+export default function Page({ params }: { params: { id: number } }) {
+    const reviews = getReviews(params.id)
 
     return (
         <main className="flex flex-col min-h-screen items-center p-8">
             <div>
                 <h2 className="title">{reviews.title}</h2>
-                <p className="author">{reviews.author} - {reviews.date.toDateString()}</p>
+                <p><Link href={`/profile/${reviews.author_id}`} className="author">{reviews.author}</Link> - {reviews.date.toDateString()}</p>
                 <div>
                     <h3>Tags:</h3>
                     <div className="flex space-x-2">
@@ -65,9 +69,9 @@ export default async function Page({ params }: { params: { id: number } }) {
                         </div>
 
                     </div>
-                    {reviews?.comments.map((comment, key) => (
+                    {/*{reviews?.comments.map((comment, key) => (
                         <p key={key} className="comment">{comment}</p>
-                    ))}
+                    ))}*/}
                 </div>
             </div>
         </main>

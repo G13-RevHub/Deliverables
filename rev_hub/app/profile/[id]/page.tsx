@@ -1,4 +1,5 @@
 "use client"
+
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -9,7 +10,7 @@ export default function Page({ params }: { params: { id: number } }) {
     const [user_data, setUserData] = useState<any>()
 
     useEffect(() => {
-        axios.post("/api/profile", { id: params.id }).then(res => {
+        axios.post("/api/user", { id: params.id }).then(res => {
             //console.log(res.data)
             setUserData({
                 email: res.data.data.email,
@@ -19,7 +20,7 @@ export default function Page({ params }: { params: { id: number } }) {
             })
             setLoading(false)
         }).catch(err => {
-            console.log("error while obtaining profile data")
+            console.log("error while obtaining user data")
             setLoading(false)
         })
     }, [])
