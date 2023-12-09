@@ -109,7 +109,7 @@ export default function Register() {
                     <button disabled={errorMessage!=="" || fetching} type="submit" className="border-2 border-gray-600 p-2 mt-6">Invia</button>
                 </form>
                 <div className="div_next">
-                <Link className="link_next" href="/components/policy.html">Registrandoti accetti i Termini della Privacy Policy</Link>
+                <Link className="link_next" href="/components/policy">Registrandoti accetti i Termini della Privacy Policy</Link>
                 </div>
             </main>
         )
