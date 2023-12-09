@@ -69,6 +69,10 @@ export default function CreateReview() {
         })
     }
 
+    const green_tag = {
+        color: '#25c430',
+    };
+
     if (fetching)
         return (
             <main className="">
@@ -88,11 +92,11 @@ export default function CreateReview() {
                         <span>Tags:</span>
                         {review_data.tags.map((tag, idx) => (
                             <div key={idx} className="flex flex-row w-full mx-5 border border-gray-600 px-2">
-                                <p className="w-full"># {tag}</p>
+                                <p className="w-full" style={green_tag}># {tag}</p>
                                 <button type="button" className="" onClick={() => {
                                     setReviewData({ ...review_data, tags: review_data.tags.filter(e => e !== tag) })
                                 }}>
-                                    <MinusIcon height={20} width={20} />
+                                    <MinusIcon height={20} width={20} color={"red"}/>
                                 </button>
                             </div>
                         ))}
@@ -104,9 +108,9 @@ export default function CreateReview() {
                                     setNewTag("")
                                 }
                                 else
-                                    alert("i tag devono essere composti solo da numeri, lettere, o '-' o '_', ed essere lunghi almeno 3 caratteri")
-                            }}>
-                                <PlusIcon height={20} width={20} />
+                                alert("i tag devono essere composti solo da numeri, lettere, o '-' o '_', ed essere lunghi almeno 3 caratteri")
+                        }}>
+                                <PlusIcon height={20} width={20} style={green_tag}/>
                             </button>
                             <p className="w-full"><input type="text" value={new_tag} onChange={e => setNewTag(e.target.value)} /></p>
                         </div>
