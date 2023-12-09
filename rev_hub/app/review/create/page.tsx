@@ -104,7 +104,7 @@ export default function CreateReview() {
                                     setNewTag("")
                                 }
                                 else
-                                    alert("i tag devono essere compsti solo da numeri, lettere, o '-' o '_', ed essere lunghi almeno 3 caratteri")
+                                    alert("i tag devono essere composti solo da numeri, lettere, o '-' o '_', ed essere lunghi almeno 3 caratteri")
                             }}>
                                 <PlusIcon height={20} width={20} />
                             </button>

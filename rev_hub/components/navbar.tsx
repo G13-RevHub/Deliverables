@@ -28,10 +28,8 @@ export default function Navbar() {
             <h1 className="logo"><Link href="/">RevHub</Link></h1>
             <Searchbar />
             <ul className="main-nav">
-                <li><Link href="/">Home</Link></li>
                 {selectedUser.id === null && <li><Link href="/hidden/createCredential">Create_Credential</Link></li>}
                 {selectedUser.id !== null && <li><Link href="/profile">Profilo</Link></li>}
-                {selectedUser.id !== null && <li><Link href="/review">Recensioni</Link></li>}
                 {selectedUser.id !== null && <li><Link href="/review/create">Crea</Link></li>}
                 {selectedUser.id !== null ?
                     <li><button onClick={() => {
