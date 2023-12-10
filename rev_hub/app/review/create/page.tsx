@@ -55,7 +55,6 @@ export default function CreateReview() {
         router.prefetch("/")
 
         axios.post("/api/review/create", data).then(res => {
-            //console.log(res.data)
             console.log(res.data)
             router.push("/")
             setFetching(false)

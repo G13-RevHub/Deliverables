@@ -14,7 +14,14 @@ La creazione di un account non è obbligatoria per l'uso dell'applicazione, ma �
 ## Applicazione
 
 L'applicazione sviluppata contiene le seguenti funzionalità:
- - ....
+ - usare proprie crdenziali di Ateneo o Google per registrarsi
+ - fare il login con le crdenziali scelte
+ - visionare recensioni di altri/e, come utente autenticato e non
+ - creare recensioni se si è autenticati
+ - fare una ricerca, per trovare altri utenti/recensioni
+ - fare logout
+ - mettere like e dislike
+ - commentare se autenticati
 
 Non sono invece state implementate le seguenti funzionalità:
  - .....
