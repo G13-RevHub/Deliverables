@@ -5,6 +5,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
+//per data
+import React from 'react';
+import { format } from 'date-fns';
 
 import './style.css'
 import { State_t } from '@/redux/store'
@@ -44,9 +47,8 @@ export default function Page({ params }: { params: { id: number } }) {
 
     const handleCommentSubmit = (event: any) => {
         event.preventDefault()
-
-
     }
+
 
     if (loading)
         return (
@@ -59,13 +61,13 @@ export default function Page({ params }: { params: { id: number } }) {
             <main className="min-h-screen">
                 <div className="flex flex-col p-8 space-y-5">
                     <h2 className="title">{review.title}</h2>
-                    <p><Link href={`/profile/${review.author_id}`} className="author">{review_auth_usr}</Link> - {review.date}</p>
+                    <p><Link href={`/profile/${review.author_id}`} className="author">{review_auth_usr}</Link> - {format(new Date(review.date), 'dd/MM/yyyy - HH:mm')}</p>
                     <p>Visualizzazioni: {review.views}</p>
                     <div className="">
                         <h2>Tags:</h2>
                         <div className="flex space-x-2">
                             {review.tags.map((tag: string, key: number) => (
-                                <p key={key} className="tag"># {tag}</p>
+                                <Link href={`/search/tag/${tag}`} key={key} className="tag"># {tag}</Link>
                             ))}
                         </div>
                     </div>
