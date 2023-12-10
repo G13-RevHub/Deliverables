@@ -7,7 +7,6 @@ interface IReview {
     date: Date,
     tags?: string[],
     text: string,
-    comments?: number[],
     views?: number
 }
 export const Review = new mongoose.Schema(
@@ -18,7 +17,6 @@ export const Review = new mongoose.Schema(
         date: { type: Date, default: Date.now, required: true, },
         tags: { type: [String], default: [], required: false },
         text: { type: String, required: true },
-        comments: { type: [Number], default: [], required: false },
         views: { type: Number, default: 0, required: false }
     }
 )

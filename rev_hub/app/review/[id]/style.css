@@ -65,7 +65,9 @@ button.primaryContained:hover{
   font-family: "Open Sans", sans-serif;
   border-radius: 5px;
   color: #e8efff;
-  outline: none;
-  border: none;
   cursor: pointer;
+}
+.like_btn_selected {
+    background: white;
+    color: #0080ff;
 }
