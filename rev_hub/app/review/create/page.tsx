@@ -56,7 +56,7 @@ export default function CreateReview() {
 
         axios.post("/api/review/create", data).then(res => {
             //console.log(res.data)
-
+            console.log(res.data)
             router.push("/")
             setFetching(false)
         }).catch(e => {
