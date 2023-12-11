@@ -8,7 +8,7 @@ export async function GET(request: NextRequest, { params }: { params: { text: st
     console.log(params.text);
     try {
         //forse non ci va user, ma qlcs di + specifico
-        const result = await User.find({ user: params.text })
+        const result = await User.find({ username: params.text })
         return NextResponse.json({ results: params.text })
     } catch (error: any) {
         return NextResponse.json(
