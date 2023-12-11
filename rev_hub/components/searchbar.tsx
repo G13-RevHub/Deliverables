@@ -16,7 +16,22 @@ export default function Searchbar() {
         else if (text_to_search.charAt(0) === '#')
             api_to_call = "tag"
 
-        txt = text_to_search.replaceAll('@', '').replaceAll('#', '').replaceAll("/", "")
+        if(api_to_call === "tag") {
+            if(text_to_search.includes(" ")) {
+                alert("Un tag non può contenere spazi")
+                return
+            }
+        }
+
+        if(api_to_call === "user") {
+            if(text_to_search.includes(" ")) {
+                alert("Uno user non può contenere spazi")
+                return
+            }
+        }
+
+        txt = text_to_search.replaceAll('@', '').replaceAll('#',
+        '').replaceAll("/", "")
         if (txt.length === 0) return
 
         router.push(`/search/${api_to_call}/${txt}`)
