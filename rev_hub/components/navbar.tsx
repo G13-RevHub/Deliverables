@@ -35,7 +35,7 @@ export default function Navbar() {
                     <li><button onClick={() => {
                         router.prefetch("/")
                         axios.get("/api/auth/logout").then(res => {
-                            //console.log(res.data)
+                            {/* console.log(res.data) */}
                             reduxDispatcher(setUser(null))
                             router.push("/")
                         }).catch(e => {
