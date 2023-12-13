@@ -7,8 +7,8 @@ connectDB();
 export async function GET(request: NextRequest, { params }: { params: { text: string } }){
     console.log(params.text);
     try {
-        //al posto di Review ci va il modello Tag, non ancora fatto
-        const result = await Review.find({ tag: params.text })
+        // Il controllo del tag dovrebbe essere corretto così
+        const result = await Review.find({ tags: params.text })
         return NextResponse.json({ results: result })
     } catch (error: any) {
         return NextResponse.json(
@@ -16,6 +16,4 @@ export async function GET(request: NextRequest, { params }: { params: { text: st
             { status: 400 }
         )
     }
-    //console.log(request.nextUrl.searchParams.get("foo"));
-    //return new Response("Hello from search tag");
 }

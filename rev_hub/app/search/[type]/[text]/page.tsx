@@ -61,7 +61,7 @@ export default function SearchReview({ params }: { params: { type: string, text:
     else
         return (
             <main className="flex flex-col p-8 w-full">
-                <h1 className="text-[25px] font-bold">Search Review for "{testo}"</h1>
+                <h1 className="text-[25px] font-bold">Search Review for "{params.type}"</h1>
                 <div className="flex space-x-2">
                     {/* {createList(tag, results)} */}
                 </div>
