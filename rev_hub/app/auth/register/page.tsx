@@ -47,7 +47,7 @@ export default function Register() {
             alert("Inserisci tutti i campi")
             return
         }
-            
+
         setFetching(true)
         router.prefetch("/auth/login")
 
@@ -117,4 +117,4 @@ export default function Register() {
                 </div>
             </main>
         )
-} 
+}

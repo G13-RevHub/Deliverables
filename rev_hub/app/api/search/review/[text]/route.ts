@@ -7,12 +7,10 @@ connectDB();
 export async function GET(request: NextRequest, { params }: { params: { text: string } }) {
     console.log(params.text);
     try {
-        const result = await Review.find({ title: params.text })
-        // const result = await Review.find(
-            // { title:
-              // { $text:
-                // { $search: params.text }
-              // }})
+
+        const fuzzyRegex = new RegExp(params.text, 'iu')
+        const result = await Review.find({ title: {$regex: fuzzyRegex} })
+
         if(!result || result.length === 0) {
             return NextResponse.json({results: []})
         }

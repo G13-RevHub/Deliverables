@@ -15,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Head>
                 <title>RevHub</title>
                 <meta name='description'>Applicazione sviluppata dal gruppo G13</meta>
+                {/* <meta charset="UTF-8"> */}
             </Head>
             <body className="min-h-screen flex flex-col justify-between">
                 <Providers>

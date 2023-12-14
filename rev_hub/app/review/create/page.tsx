@@ -78,7 +78,10 @@ export default function CreateReview() {
                 <form className="w-full flex flex-col space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <span>Titolo:</span>
-                        <input required type="text" name="title" value={review_data.title} onChange={e => setReviewData({ ...review_data, title: e.target.value })} />
+                        <input required type="text" pattern="/[^\\\/&@]+/"
+        name="title" placeholder="I seguenti caratteri non sono permessi: / \ @ &"
+        value={review_data.title} onChange={e => setReviewData({ ...review_data,
+                            title: e.target.value })}  />
                     </div>
                     <div className="w-full flex flex-col">
                         <span>Tags:</span>
