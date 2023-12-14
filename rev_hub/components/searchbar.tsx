@@ -30,8 +30,7 @@ export default function Searchbar() {
             }
         }
 
-        txt = text_to_search.replaceAll('@', '').replaceAll('#',
-        '').replaceAll("/", "")
+        txt = text_to_search.replaceAll('@', '').replaceAll('#', '').replaceAll("/", "")
         if (txt.length === 0) return
 
         router.push(`/search/${api_to_call}/${txt}`)

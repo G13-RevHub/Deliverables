@@ -14,13 +14,17 @@ export default function Navbar() {
     const router = useRouter()
     const selectedUser = useSelector((state: State_t) => state.user)
     const reduxDispatcher = useDispatch();
+    let first = true
 
     useEffect(() => {
-        axios.get("/api/auth/current").then(res => {
-            reduxDispatcher(setUser(res.data.data.id))
-        }).catch(e => {
-            reduxDispatcher(setUser(null))
-        })
+        if(first) {
+            axios.get("/api/auth/current").then(res => {
+                reduxDispatcher(setUser(res.data.data.id))
+            }).catch(e => {
+                reduxDispatcher(setUser(null))
+            })
+            first = false
+        }
     }, [])
 
     return (
@@ -32,18 +36,22 @@ export default function Navbar() {
                 {selectedUser.id !== null && <li><Link href="/profile">Profilo</Link></li>}
                 {selectedUser.id !== null && <li><Link href="/review/create">Crea</Link></li>}
                 {selectedUser.id !== null ?
-                    <li><button onClick={() => {
-                        router.prefetch("/")
-                        axios.get("/api/auth/logout").then(res => {
-                            {/* console.log(res.data) */}
-                            reduxDispatcher(setUser(null))
-                            router.push("/")
-                        }).catch(e => {
-                            console.log("error while logging out:", e)
-                        })
-                    }}>Logout</button></li>
-                    :
-                    <li><Link href="/auth/login">Login</Link></li>
+                 <li>
+                     <button onClick={() => {
+                         router.prefetch("/")
+                         axios.get("/api/auth/logout").then(res => {
+                             {/* console.log(res.data) */}
+                             reduxDispatcher(setUser(null))
+                             router.push("/")
+                         }).catch(e => {
+                             console.log("error while logging out:", e)
+                         })
+                     }}>Logout</button>
+                 </li>
+                :
+                 <li>
+                     <Link href="/auth/login">Login</Link>
+                 </li>
                 }
             </ul>
         </header>

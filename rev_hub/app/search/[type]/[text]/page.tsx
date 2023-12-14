@@ -7,14 +7,14 @@ import React from 'react';
 
 function createList(tag: string, results: any[]) {
     if (!results) {
-        console.log("Results_null: ", results)
+        /* console.log("Results_null: ", results) */
         return <div>Error while searching, please retry again</div>;
     } else if (results.length === 0) {
         return <div>Nothing found</div>
     } else if (tag === "review" || tag === "tag") {
         /* console.log("Results_reviews: ", results) */
         return (
-            <div>
+            <div className="flex flex-col space-y-2">
                 {
                     results.map((result, id) => (
                         <Link key={id} href={`/review/${result.id}`}>{result.title}</Link>
@@ -25,7 +25,7 @@ function createList(tag: string, results: any[]) {
     } else if (tag === "user") {
         /* console.log("Results_user: ", results) */
         return (
-            <div>
+            <div className="flex flex-col space-y-2">
                 {
                     results.map((result, id) => (
                         <Link key={id} href={`/profile/${result.id}`}>@{result.username}</Link>

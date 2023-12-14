@@ -67,7 +67,7 @@ export default function Page({ params }: { params: { id: number } }) {
                         <h2>Tags:</h2>
                         <div className="flex space-x-2">
                             {review.tags.map((tag: string, key: number) => (
-                                <Link href={`/search/tag/${tag}`} key={key} className="tag"># {tag}</Link>
+                                <Link href={`/search/tag/${tag}`} key={key} className="tag">#{tag}</Link>
                             ))}
                         </div>
                     </div>
@@ -104,33 +104,33 @@ export default function Page({ params }: { params: { id: number } }) {
                         </button>
                     </div>
 
-                    <div className='commenti-div mt-5'>
+                    {/* <div className='commenti-div mt-5'>
                         <h2 className="title">Commenti</h2>
                         <div id="app">
-                            <form className="container" onSubmit={handleCommentSubmit}>
-                                <div className="row">
-                                    <div className="col-6">
-                                        <div className="comment">
-                                            <p v-for="items in item" v-text="items"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-6">
-                                        <textarea className="input" placeholder="Scrivi un commento" v-model="newItem" />
-                                        <button className='primaryContained float-right' type="submit">Invia</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <form className="container" onSubmit={handleCommentSubmit}>
+                        <div className="row">
+                        <div className="col-6">
+                        <div className="comment">
+                        <p v-for="items in item" v-text="items"></p>
+                        </div>
+                        </div>
+                        </div>
+                        <div className="row">
+                        <div className="col-6">
+                        <textarea className="input" placeholder="Scrivi un commento" v-model="newItem" />
+                        <button className='primaryContained float-right' type="submit">Invia</button>
+                        </div>
+                        </div>
+                        </form>
 
                         </div>
                         {comments?.map((comment: { auth_usr: string, text: string }, key: number) => (
-                            <div key={key}>
-                                <h3>{comment.auth_usr}</h3>
-                                <p className="comment">{comment.text}</p>
-                            </div>
+                        <div key={key}>
+                        <h3>{comment.auth_usr}</h3>
+                        <p className="comment">{comment.text}</p>
+                        </div>
                         ))}
-                    </div>
+                        </div> */}
                 </div>
             </main>
         )
