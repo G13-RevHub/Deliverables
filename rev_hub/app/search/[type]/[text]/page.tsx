@@ -6,36 +6,34 @@ import { useEffect, useState } from "react"
 import React from 'react';
 
 function createList(tag: string, results: any[]) {
-    console.log("Results_2: ", results)
-    if (!results || results.length === 0) {
-        return <div>Undefined.</div>;
-    }
-    if (tag === "review" || tag === "tag") {
+    if (!results) {
+        console.log("Results_null: ", results)
+        return <div>Error while searching, please retry again</div>;
+    } else if (results.length === 0) {
+        return <div>Nothing found</div>
+    } else if (tag === "review" || tag === "tag") {
+        /* console.log("Results_reviews: ", results) */
         return (
             <div>
-                <p>pin</p>
                 {
-                    //non so perché ci vadano le () al posto di {} dopo =>
-                    results.map((title, id) => (
-                        <Link key={id} href={`/review/${id}`}>{title}</Link>
+                    results.map((result, id) => (
+                        <Link key={id} href={`/review/${result.id}`}>{result.title}</Link>
                     ))
                 }
             </div>
         )
     } else if (tag === "user") {
+        /* console.log("Results_user: ", results) */
         return (
             <div>
-                <ul>
                 {
-                    results.map((id, username) => (
-                        <li><Link key={id} href={`/profile/${id}`}>{username}</Link></li>
+                    results.map((result, id) => (
+                        <Link key={id} href={`/profile/${result.id}`}>@{result.username}</Link>
                     ))
                 }
-                </ul>
             </div>
         )
     }
-    return <div>Nessun risultato disponibile.</div>;
 }
 
 export default function SearchReview({ params }: { params: { type: string, text: string } }) {
@@ -45,15 +43,15 @@ export default function SearchReview({ params }: { params: { type: string, text:
     const txt = params.text.replaceAll('@', '').replaceAll('#', '').replaceAll("%20", " ").replaceAll("%22", '"')
 
     useEffect(() => {
-        console.log("Results: ", results)
+        /* console.log("Results: ", results) */
         if (txt.length === 0) return
 
         console.log(`searching ${txt} using ${params.type}`)
 
         axios.get(`/api/search/${params.type}/${txt}`).then( res => {
-            console.log("res.data: " + res.data)
-            console.log("res.data.items: " + res.data.items)
-            setResults(res.data.items)//forse qui va .items perché se no dà errore con results.map
+            /* console.log("res.data: " + res.data) */
+            /* console.log("res.data.results: " + res.data.results) */
+            setResults(res.data.results)
             setLoading(false)
         }).catch(error => {
             alert("Error while searching: " + error.message)
@@ -76,7 +74,7 @@ export default function SearchReview({ params }: { params: { type: string, text:
                 <h1 className="text-[25px] font-bold">Search Review for "{params.text}"</h1>
                 <div className="flex space-x-2">
                     {
-                        createList(params.type, results) 
+                        createList(params.type, results)
                     }
                 </div>
             </main>
