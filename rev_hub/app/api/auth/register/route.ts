@@ -37,11 +37,13 @@ export async function POST(request: NextRequest) {
         //check if the user already exists
         const userEmailExists = await User.findOne({ email: req_data.email })
         const userUsernameExists = await User.findOne({ username: req_data.username })
-        if (userEmailExists || userUsernameExists) { throw new Error("User already exists") }
+        if (userEmailExists || userUsernameExists)
+            return NextResponse.json({ state: "error", message: "Esiste già un utente registrato con questa mail" })
 
         // simulate the login using unitn/google credential. orgranization = "Google" or "UniTn"
         const credential = await Credential.findOne({ email: req_data.email, organization: req_data.organization })
-        if (!credential) { throw new Error("Credential unexisting") }
+        if (!credential)
+        return NextResponse.json({ state: "error", message: "Mail o Password errati" })
 
         // create new user
         // random string
@@ -68,7 +70,7 @@ export async function POST(request: NextRequest) {
         console.log(newUser)
         const x = await newUser.save()
         console.log(x)
-        return NextResponse.json({ message: "User created successfully" })
+        return NextResponse.json({ state: "ok", message: "User created successfully" })
     } catch (error: any) {
         return NextResponse.json(
             { message: error.message },

@@ -60,7 +60,11 @@ export default function Register() {
 
         //console.log("sending:", data)
         axios.post("/api/auth/register", data).then(res => {
-            router.push("/auth/login")
+            if (res.data.state === "error") {
+                alert(res.data.message);
+            } else {
+                router.push("/auth/login")
+            }
             setFetching(false)
         }).catch(e => {
             alert(`Registrazione fallita. Account ${org} inesistente`)
