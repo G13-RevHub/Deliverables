@@ -1,1 +1,7 @@
+openapi: 3.0.3
+info:
+  version: '1.0'
+  title: 'Revhub'
 
+basepath: 'localhost:3000/'
+paths:

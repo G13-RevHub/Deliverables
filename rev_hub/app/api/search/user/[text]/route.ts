@@ -6,8 +6,9 @@ connectDB();
 
 export async function GET(request: NextRequest, { params }: { params: { text: string } }){
     try {
-        const result = await User.find({ username: params.text })
-        console.log("log user: ", result)
+        const fuzzyRegex = new RegExp(params.text, 'i')
+        const result = await User.find({ username: { $regex: fuzzyRegex } })
+
         if(!result || result.length === 0) {
             return NextResponse.json({ results: [] })
         }
