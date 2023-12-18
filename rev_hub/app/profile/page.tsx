@@ -27,7 +27,7 @@ export default function Page() {
                 username: res.data.data.username
             })
             axios.get(`/api/user/getUserReviews/${res.data.data.id}`).then(res => {
-                console.log(res.data)
+                //console.log(res.data)
                 setUserReviews(res.data.reviews)
                 setLoading(false)
             }).catch(err => {
@@ -36,8 +36,8 @@ export default function Page() {
             })
         }).catch(err => {
             console.log("error while obtaining user data")
-            reduxDispatcher(setUser(null))
-            router.push("/")
+            //reduxDispatcher(setUser(null))
+            //router.push("/auth/login")
             setLoading(false)
         })
 
