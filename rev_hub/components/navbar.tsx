@@ -36,7 +36,7 @@ export default function Navbar() {
                 {selectedUser.id !== null && <li><Link href="/profile">Profilo</Link></li>}
                 {selectedUser.id !== null && <li><Link href="/review/create">Crea</Link></li>}
                 {selectedUser.id !== null ?
-                 <li>
+                 <li className='flex justify-center items-center'>
                      <button onClick={() => {
                          router.prefetch("/")
                          axios.get("/api/auth/logout").then(res => {
