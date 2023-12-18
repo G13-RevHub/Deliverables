@@ -28,7 +28,7 @@ export default function Page({ params }: { params: { id: number } }) {
     useEffect(() => {
         if (Number.isNaN(params.id))
         router.push("/")
-    
+
     if (!loaded_once) {
         loaded_once = true
         axios.get(`/api/review/get/${params.id}`).then(res => {
@@ -83,7 +83,7 @@ export default function Page({ params }: { params: { id: number } }) {
         return (
             <main className="min-h-screen">
                 <div className="flex flex-col p-8 space-y-5">
-                    
+
                     {/*<div className="flex flex-row space-x-4 justify-center">
                         <button type="button" className={"like_btn ".concat(user_rate !== null && user_rate === true ? "like_btn_selected" : "")} onClick={async () => {
                             if (user_rate === null) {
@@ -127,7 +127,7 @@ export default function Page({ params }: { params: { id: number } }) {
                             ))}
                         </div>
                     </div>
-                    <p className="body">{review.text}</p>
+                    <p className="body line-feed-enabled">{review.text}</p>
 
                     <div className="flex flex-row space-x-4 justify-center">
                         <button
