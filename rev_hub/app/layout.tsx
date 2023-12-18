@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import Head from 'next/head'
 
 import './globals.css'
