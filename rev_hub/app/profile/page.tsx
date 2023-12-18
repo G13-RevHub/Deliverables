@@ -15,7 +15,7 @@ export default function Page() {
     const reduxDispatcher = useDispatch();
 
     useEffect(() => {
-        axios.get("/api/user").then(res => {
+        axios.get("/api/user/get").then(res => {
             //console.log(res.data)
             setUserData({
                 email: res.data.data.email,

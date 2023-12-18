@@ -10,7 +10,7 @@ export default function Page({ params }: { params: { id: number } }) {
     const [user_data, setUserData] = useState<any>()
 
     useEffect(() => {
-        axios.post("/api/user", { id: params.id }).then(res => {
+        axios.get(`/api/user/get/${params.id}`).then(res => {
             //console.log(res.data)
             setUserData({
                 email: res.data.data.email,
