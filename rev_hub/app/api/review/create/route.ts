@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
         const x = await new_review.save()
         //console.log(x)
 
-        return NextResponse.json({ message: "Review created successfully" })
+        return NextResponse.json({ message: "Review created successfully", id: id })
     } catch (error: any) {
         return NextResponse.json(
             { message: error.message },

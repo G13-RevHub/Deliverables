@@ -11,15 +11,11 @@ export default function Home() {
     useEffect(() => {
         if (loading) return
 
-
-    }, [])
-
-    useEffect(() => {
-        //esegue la funzione passatagli come parametro allo scadere del timeout, che in questo caso è di 2000 ms
+        // qui deve ottenere la lista di recensioni
         setTimeout(() => {
             setLoading(false)
-        }, 1000)
-    })
+        }, 500)
+    }, [])
 
     if (loading)
         return (
