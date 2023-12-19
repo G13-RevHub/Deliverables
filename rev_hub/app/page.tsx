@@ -2,35 +2,40 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import axios from 'axios'
 
 export default function Home() {
     const [loading, setLoading] = useState(true)
-
-    const lista = [1, 2, 3, 4, 5]
+    const [reviews, setReviews] = useState<any[]>([])
 
     useEffect(() => {
-        if (loading) return
-
-        // qui deve ottenere la lista di recensioni
-        setTimeout(() => {
+        if (loading) {
+            axios.get("/api/review/getPerViews").then( res => {
+                setReviews(res.data.results)
+            })
             setLoading(false)
-        }, 500)
+        }
     }, [])
 
-    if (loading)
+    if (loading) {
         return (
             <main className="flex flex-col items-center p-8">
                 <h1>RevHub</h1>
                 <h2>LOADING...</h2>
             </main>
         )
-    else
+    } else {
+        console.log(typeof(reviews))
+        console.log(reviews)
         return (
             <main className="flex flex-col p-8">
                 <h1 className="text-[25px] font-bold">Recensioni più viste</h1>
-                {lista.map((value, id) => (
-                    <Link key={id} href={`/review/${value}`}>recensione {value}</Link>
-                ))}
+
+            {reviews.map((rev, id) => (
+                <Link key={id} href={`/review/${rev.id}`}>{rev.title}</Link>
+            ))}
+
             </main>
         )
+    }
 }
