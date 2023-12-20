@@ -52,7 +52,7 @@ export default function Page({ params }: { params: { id: number } }) {
             <main>
                 <h1>Dati utente: </h1>
                 {loading[0] && loading[1] ?
-                    <h3>Loading...</h3>
+                    <h3>Caricamento...</h3>
                     :
                     <div className="flex flex-col space-y-3">
                         <p>Username: {user_data.username}</p>

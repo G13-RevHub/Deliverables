@@ -80,7 +80,7 @@ export default function Register() {
     if (loading)
         return (
             <main className="">
-                <h2>Loading...</h2>
+                <h2>Caricamento...</h2>
             </main>
         )
     else
@@ -103,7 +103,7 @@ export default function Register() {
                     </label>
                     <label>
                         <span>Password:</span>
-                        <input required type="text" name="password" onChange={event => setPass(event.target.value)} value={pass} />
+                        <input required type="password" name="password" onChange={event => setPass(event.target.value)} value={pass} />
                         {/*<input required type="password" name="password" onChange={event => setPass(event.target.value)} value={pass} />*/}
                     </label>
                     <label>

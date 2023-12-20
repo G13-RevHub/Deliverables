@@ -49,7 +49,7 @@ export default function Page() {
 
             <h2>Dati utente: </h2>
             {loading ?
-                <h3>Loading...</h3>
+                <h3>Caricamento...</h3>
                 :
                 <div className="flex flex-col space-y-3">
                     <p>Username: {user_data.username}</p>
@@ -65,6 +65,7 @@ export default function Page() {
                             :
 
                             <div className="flex flex-col space-y-3 mt-4">
+                                <br />
                                 <h2>Recensioni dell'utente:</h2>
                                 <ul>
                                     {user_reviews?.map((rev, idk) => (

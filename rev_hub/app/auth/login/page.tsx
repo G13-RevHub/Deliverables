@@ -56,7 +56,7 @@ export default function Login() {
                         </label>
                         <label>
                             <span>Password:</span>
-                            <input required type="text" name="password" onChange={event => setPass(event.target.value)} value={pass} />
+                            <input required type="password" name="password" onChange={event => setPass(event.target.value)} value={pass} />
                             {/*<input required type="password" name="password" onChange={event => setPass(event.target.value)} value={pass} />*/}
                         </label>
                         <button disabled={fetching} type="submit" className="border-2 border-gray-600 p-2 mt-6">Login</button>

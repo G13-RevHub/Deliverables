@@ -67,7 +67,7 @@ export default function CreateReview() {
     if (fetching)
         return (
             <main className="">
-                <h2>Loading...</h2>
+                <h2>Caricamento...</h2>
             </main>
         )
     else

@@ -77,6 +77,7 @@ export default function Page({ params }: { params: { id: number } }) {
         return (
             <main className="flex flex-col items-center p-8">
                 <h2>Caricamento...</h2>
+                <h4>In caso di lentezza, la preghiamo di ricaricare</h4>
             </main>
         )
     else
