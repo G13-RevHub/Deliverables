@@ -97,19 +97,23 @@ export default function Page({ params }: { params: { id: number } }) {
                     <p className="body line-feed-enabled">{review.text}</p>
 
                     <div className="flex flex-row space-x-4 justify-center">
-                        <button type="button" disabled={rating}
-                            className={"like_btn ".concat(user_rate !== null && user_rate === true ? "like_btn_selected" : "")}
-                            onClick={() => {
-                                handleRate(user_rate === true ? null : true)
-                            }}
+                        <button type="button" disabled={rating || selectedUser
+                        === null || selectedUser.id <= 0}
+                                className={"like_btn ".concat(user_rate !== null && user_rate === true ? "like_btn_selected " : "")
+                                                      .concat(selectedUser === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
+                                onClick={() => {
+                                    handleRate(user_rate === true ? null : true)
+                                }}
                         >
                             <span>{rates && rates.filter((rate) => rate.rate).length}</span> Like
                         </button>
-                        <button type="button" disabled={rating}
-                            className={"like_btn ".concat(user_rate !== null && user_rate === false ? "like_btn_selected" : "")}
-                            onClick={() => {
-                                handleRate(user_rate === false ? null : false)
-                            }}
+                        <button type="button" disabled={rating || selectedUser
+                        === null || selectedUser.id <= 0}
+                                className={"like_btn ".concat(user_rate !== null && user_rate === false ? "like_btn_selected" : "")
+                                                      .concat(selectedUser === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
+                                onClick={() => {
+                                    handleRate(user_rate === false ? null : false)
+                                }}
                         >
                             <span>{rates && rates.filter((rate) => !rate.rate).length}</span> Dislike
                         </button>
