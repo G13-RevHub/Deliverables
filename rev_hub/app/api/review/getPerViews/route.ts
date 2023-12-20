@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 connectDB();
 
-export async function GET(request: NextRequest, { params }: { params: { text: string } }) {
+export async function GET(request: NextRequest) {
     try {
         const result = await Review.find({}).sort({ views: -1 })
 
