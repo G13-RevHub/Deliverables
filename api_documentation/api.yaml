@@ -1,7 +1,32 @@
 openapi: 3.0.3
 info:
-  version: '1.0'
-  title: 'Revhub'
-
-basepath: 'localhost:3000/'
+  title: RevHub API
+  description: |-
+    Questa è la raccolta di tutte le API usate da RevHub per gestire le interazioni con l'utente ed interagire col database.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: cognomenome870@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: RevHub Git
+  url: https://github.com/G13-RevHub/RevHub
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: auth
+    description: Usate per permettere all'utente di registrarsi, fare login e logout e per verificare se l'utente ha fatto o meno il login
+  - name: review
+    description: Sono le api usate per creare, visualizzare ed interagire con le recensioni
+  - name: user
+    description: Sono le api usate per ottenere dei dati riguardanti gli utenti
+  - name: search
+    description: Sono le api che consentono di cercare utenti e recensioni
 paths:
+  /auth:
+  /review:
+  /user:
+  /search:
+components:
