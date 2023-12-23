@@ -1,0 +1,419 @@
+openapi: 3.0.3
+info:
+  title: RevHub API
+  description: |-
+    Questa è la raccolta di tutte le API usate da RevHub per gestire le interazioni con l'utente ed interagire col database.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: cognomenome870@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: RevHub Git
+  url: https://github.com/G13-RevHub/RevHub
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: auth
+    description: Usate per permettere all'utente di registrarsi, fare login e logout e per verificare se l'utente ha fatto o meno il login
+  - name: review
+    description: Sono le api usate per creare, visualizzare ed interagire con le recensioni
+  - name: user
+    description: Sono le api usate per ottenere dei dati riguardanti gli utenti
+  - name: search
+    description: Sono le api che consentono di cercare utenti e recensioni
+paths:
+  /auth/current:
+    get:
+      tags:
+        - auth
+      summary: Rileva se l'utente ha effettuato il login
+      description: Controlla se nei cookies della request è contenuto un token valido di un utente
+      responses:
+        '200':
+          description: Utente loggato
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Utente non loggato
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Effettua il login
+      description: Effettua il login, inserendo nella response un token associato all'utente in caso di successo
+      requestBody:
+        description: Credenziali dell'utente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login_Credential'
+        required: true
+      responses:
+        '200':
+          description: In caso di successo, viene anche restituito l'id dell'utente
+          content:
+            application/json:
+              schema:
+                type: number
+        '400':
+          description: Credenziali errate
+  /auth/logout:
+    get:
+      tags:
+        - auth
+      summary: Effettua il logout
+      description: Elimina, se esiste, il token dell'utente contenuto nella request
+      responses:
+        '200':
+          description: Logout effettuato
+  /auth/register:
+    post:
+      tags:
+        - auth
+      summary: Registra un nuovo utente
+      description: Registra un nuovo utente usando credenziali Google o UniTn
+      requestBody:
+        description: Credenziali Google o UniTn
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credential'
+        required: true
+      responses:
+        '200':
+          description: Utente registrato con successo
+        '400':
+          description: Registrazione fallita
+  /review/create:
+    post:
+      tags:
+        - review
+      summary: Crea una nuova recensione
+      description: Crea una nuova recensione
+      requestBody:
+        description: Credenziali Google o UniTn
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      responses:
+        '200':
+          description: Recensione creata con successo. Viene restituito l'id della nuova recensione
+          content:
+            application/json:
+              schema:
+                type: number
+        '400':
+          description: Creazione della recensione fallita
+  /review/get/{id}:
+    get:
+      tags:
+        - review
+      summary: Restituisce una recensione
+      description: Restituisce la recensione con l'ID passato come parametro
+      parameters:
+        - name: id
+          in: path
+          description: ID della recensione da restituire
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Recensione trovata e restituita con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '400':
+          description: Recensione inesistente
+  /review/getPerView:
+    get:
+      tags:
+        - review
+      summary: Restituisce le recensioni con il maggior numero di visualizzazioni
+      description: Restituisce le recensioni con il maggior numero di visualizzazioni
+      responses:
+        '200':
+          description: Recensione trovata e restituita con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description: Errore durante l'esecuzione
+  /review/rate:
+    put:
+      tags:
+        - review
+      summary: Gestisce la votazione degli utenti
+      description: Gestisce la votazione degli utenti, aggiungendo e rimuovendo likes e dislikes
+      requestBody:
+        description: Informazioni sulla votazione effettuata
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rate'
+        required: true
+      responses:
+        '200':
+          description: In caso di successo, viene restituito il nuovo array di voti associate alla recensione
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rate'
+        '400':
+          description: Votazione della recensione fallita
+  /user/get/{id}:
+    get:
+      tags:
+        - user
+      summary: Restituisce un utente
+      description: Restituisce l'utente con l'ID passato come parametro
+      parameters:
+        - name: id
+          in: path
+          description: ID dell'utente da restituire
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Utente trovato e restituito con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Utente inesistente
+  /user/get:
+    get:
+      tags:
+        - user
+      summary: Restituisce l'utente corrente
+      description: Restituisce l'utente corrente, utilizzando il token contenuto nella request
+      responses:
+        '200':
+          description: Utente restituito con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Utente non loggato
+  /user/getAllUsernames:
+    get:
+      tags:
+        - user
+      summary: Restituisce tutti gli username
+      description: Restituisce una lista con tutti gli username di tutti gli utenti esistenti
+      responses:
+        '200':
+          description: Lista restituita con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /user/getUserReview/{id}:
+    get:
+      tags:
+        - user
+      summary: Restituisce le recensioni di un utente
+      description: Restituisce le recensioni dell'utente il cui ID è stato passato come parametro
+      parameters:
+        - name: id
+          in: path
+          description: ID dell'utente di cui restituire le recensioni
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Recensioni restituite con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description: Utente inesistente
+  /search/review/{text}:
+    get:
+      tags:
+        - search
+      summary: Restituisce le recensioni il cui titolo ha un riscontro col testo cercato
+      description: Restituisce quelle recensioni che hanno un match tra il testo usato per la ricerca ed il loro titolo
+      parameters:
+        - name: text
+          in: path
+          description: testo della ricerca
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recensioni restituite con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description: Errore durante l'esecuzione
+  /search/tag/{text}:
+    get:
+      tags:
+        - search
+      summary: Restituisce le recensioni con un certo tag
+      description: Restituisce quelle recensioni che possiedono tra i tag quello inserito nella ricerca
+      parameters:
+        - name: text
+          in: path
+          description: tag della ricerca
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recensioni restituite con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description: Errore durante l'esecuzione
+  /search/user/{text}:
+    get:
+      tags:
+        - search
+      summary: Restituisce gli utenti il cui username ha un riscontro col testo cercato
+      description: Restituisce quegli utenti che hanno un match tra il testo usato per la ricerca ed il loro username
+      parameters:
+        - name: text
+          in: path
+          description: testo della ricerca
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Utenti restituiti con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: Errore durante l'esecuzione
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: "nome"
+        surname:
+          type: string
+          example: "cognome"
+        username:
+          type: string
+          example: "username"
+        email:
+          type: string
+          example: "mail@domain.com"
+        password:
+          type: string
+          example: "password123"
+    Login_Credential:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "username"
+        password:
+          type: string
+          example: "password123"
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        title:
+          type: string
+          example: "titolo"
+        author_id:
+          type: number
+          example: 12
+        date:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        text:
+          type: string
+          example: "testo della recensione"
+        views:
+          type: number
+          example: 54
+    Rate:
+      type: object
+      properties:
+        author_id:
+          type: integer
+          format: int64
+          example: 1
+        review_id:
+          type: integer
+          format: int64
+          example: 7
+        rate:
+          type: boolean
+    Credential:
+      type: object
+      properties:
+        organization:
+          type: string
+          enum:
+            - Google
+            - UniTn
+        email:
+          type: string
+          example: "mail@domain.com"
+        password:
+          type: string
+          example: "password123"
+        name:
+          type: string
+          example: "nome"
+        surname:
+          type: string
+          example: "cognome"

@@ -7,7 +7,7 @@ import { connectDB } from "@/configs/dbConfig";
 
 connectDB();
 
-export async function POST(request: NextRequest) {
+export async function PUT(request: NextRequest) {
     try {
         // makes sure the user is logged
         const user_id = await validateJWT(request)

@@ -62,7 +62,7 @@ export default function Page({ params }: { params: { id: number } }) {
             review_id: review.id,
             rate: newRate,
         }
-        axios.post("/api/review/rate", new_rate).then(res => {
+        axios.put("/api/review/rate", new_rate).then(res => {
             //console.log("Server response:", res.data);
             setUserRate(newRate);
             setRates(res.data.rates)
@@ -98,20 +98,18 @@ export default function Page({ params }: { params: { id: number } }) {
                     <p className="body line-feed-enabled">{review.text}</p>
 
                     <div className="flex flex-row space-x-4 justify-center">
-                        <button type="button" disabled={rating || selectedUser
-                        === null || selectedUser.id <= 0}
+                        <button type="button" disabled={rating || selectedUser === null || selectedUser.id === null || selectedUser.id <= 0}
                                 className={"like_btn ".concat(user_rate !== null && user_rate === true ? "like_btn_selected " : "")
-                                                      .concat(selectedUser === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
+                                                      .concat(selectedUser === null || selectedUser.id === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
                                 onClick={() => {
                                     handleRate(user_rate === true ? null : true)
                                 }}
                         >
                             <span>{rates && rates.filter((rate) => rate.rate).length}</span> Like
                         </button>
-                        <button type="button" disabled={rating || selectedUser
-                        === null || selectedUser.id <= 0}
+                        <button type="button" disabled={rating || selectedUser === null || selectedUser.id === null || selectedUser.id <= 0}
                                 className={"like_btn ".concat(user_rate !== null && user_rate === false ? "like_btn_selected" : "")
-                                                      .concat(selectedUser === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
+                                                      .concat(selectedUser === null || selectedUser.id === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
                                 onClick={() => {
                                     handleRate(user_rate === false ? null : false)
                                 }}
