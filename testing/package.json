@@ -1,0 +1,14 @@
+{
+    "name": "testing",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "test": "jest --coverage"
+    },
+    "dependencies": {
+        "jest": "^29.7.0"
+    },
+    "devDependencies": {
+        "node-fetch": "^3.3.2"
+    }
+}
