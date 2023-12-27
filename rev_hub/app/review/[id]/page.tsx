@@ -10,7 +10,6 @@ import { format } from 'date-fns';
 import './style.css'
 import { State_t } from '@/redux/store'
 
-let loaded_once = false
 export default function Page({ params }: { params: { id: number } }) {
     const selectedUser = useSelector((state: State_t) => state.user);
     const [loading, setLoading] = useState([true, true])
@@ -24,26 +23,23 @@ export default function Page({ params }: { params: { id: number } }) {
     useEffect(() => {
         if (Number.isNaN(params.id))
             router.push("/")
-
-        if (!loaded_once) {
-            loaded_once = true
-            axios.get(`/api/review/get/${params.id}`).then(res => {
-                //console.log("data: ", res.data)
-                setReview(res.data.review)
-                setReviewAuthUsr(res.data.auth_usr)
-                setRates(res.data.rates || []);
-                setLoading(old => [false, old[1]])
-            }).catch(err => {
-                console.log("error while obtaining the review", err)
-                router.push("/")
-            })
-        }
+        
+        axios.get(`/api/review/get/${params.id}`).then(res => {
+            //console.log("data: ", res.data)
+            setReview(res.data.review)
+            setReviewAuthUsr(res.data.auth_usr)
+            setRates(res.data.rates || []);
+            setLoading(old => [false, old[1]])
+        }).catch(err => {
+            console.log("error while obtaining the review", err)
+            router.push("/")
+        })
     }, [])
 
     useEffect(() => {
         if (selectedUser.id !== null && rates.length > 0) {
             const usr_rate = rates.find((rate: any) => rate.author_id === selectedUser.id)
-            if (usr_rate.rate === undefined)
+            if (usr_rate === undefined || usr_rate.rate === undefined)
                 setUserRate(null)
             else
                 setUserRate(usr_rate.rate)
@@ -99,20 +95,20 @@ export default function Page({ params }: { params: { id: number } }) {
 
                     <div className="flex flex-row space-x-4 justify-center">
                         <button type="button" disabled={rating || selectedUser === null || selectedUser.id === null || selectedUser.id <= 0}
-                                className={"like_btn ".concat(user_rate !== null && user_rate === true ? "like_btn_selected " : "")
-                                                      .concat(selectedUser === null || selectedUser.id === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
-                                onClick={() => {
-                                    handleRate(user_rate === true ? null : true)
-                                }}
+                            className={"like_btn ".concat(user_rate !== null && user_rate === true ? "like_btn_selected " : "")
+                                .concat(selectedUser === null || selectedUser.id === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
+                            onClick={() => {
+                                handleRate(user_rate === true ? null : true)
+                            }}
                         >
                             <span>{rates && rates.filter((rate) => rate.rate).length}</span> Like
                         </button>
                         <button type="button" disabled={rating || selectedUser === null || selectedUser.id === null || selectedUser.id <= 0}
-                                className={"like_btn ".concat(user_rate !== null && user_rate === false ? "like_btn_selected" : "")
-                                                      .concat(selectedUser === null || selectedUser.id === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
-                                onClick={() => {
-                                    handleRate(user_rate === false ? null : false)
-                                }}
+                            className={"like_btn ".concat(user_rate !== null && user_rate === false ? "like_btn_selected" : "")
+                                .concat(selectedUser === null || selectedUser.id === null || selectedUser.id <= 0 ? "like_btn_disabled" : "")}
+                            onClick={() => {
+                                handleRate(user_rate === false ? null : false)
+                            }}
                         >
                             <span>{rates && rates.filter((rate) => !rate.rate).length}</span> Dislike
                         </button>

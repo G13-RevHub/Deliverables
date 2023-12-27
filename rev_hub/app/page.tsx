@@ -25,8 +25,6 @@ export default function Home() {
             </main>
         )
     } else {
-        /* console.log(typeof(reviews))
-         * console.log(reviews) */
         return (
             <main className="flex flex-col p-8">
                 <h1 className="text-[25px] font-bold">Recensioni più viste</h1>

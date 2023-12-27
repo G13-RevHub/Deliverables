@@ -10,21 +10,11 @@ function isValidEmail(email: string): boolean {
     return emailRegex.test(email)
 }
 
-/**
- * la request deve contenere i seguenti parametri, tutti non vuoti e con valori validi
- * @param request: {
-    organization: string, -> con valore "UniTn" oppure "Google"
-    email: string, -> con un formato valido per una mail
-    password: string,
-    name: string,
-    surname: string
- * }
- * @returns 
- */
 export async function POST(request: NextRequest) {
-    console.log("trying to create new autority credential")
+    console.log("trying to create new autority credential:")
     try {
         const req_data = await request.json()
+        console.log(req_data)
 
         // check whether req_data has a valid Credential format
         if (!req_data.organization || (req_data.organization !== "UniTn" && req_data.organization !== "Google")

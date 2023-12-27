@@ -20,9 +20,6 @@ export default function Register() {
     const router = useRouter()
 
     useEffect(() => {
-        axios.post("/api/testing/getTable", {type:"credentials"}).then(res => {console.log("existing credentials:", res.data)})
-        axios.post("/api/testing/getTable", {type:"users"}).then(res => {console.log("registered users:", res.data)})
-
         axios.get("/api/user/getAllUsernames").then(res => {
             //console.log(res.data)
             setLoading(false)
@@ -34,7 +31,7 @@ export default function Register() {
     }, [])
 
     useEffect(() => {
-        if (usernames.includes(username)) {
+        if (usernames && usernames.includes(username)) {
             setErrorMessage("Username già in uso")
         } else {
             setErrorMessage("")
@@ -86,7 +83,7 @@ export default function Register() {
     else
         return (
             <main className="">
-                <h2>Creazione di credenziali UniTn o Google per simulare l'uso di credenziali UniTn o Google per la creazione del profilo</h2>
+                <h2>Creazione di credenziali UniTn o Google per simulare l&apos;uso di credenziali UniTn o Google per la creazione del profilo</h2>
                 <form className="w-3/4" onSubmit={handleSubmit}>
                     <label>
                         <span>Organizzazione:</span>
@@ -113,7 +110,7 @@ export default function Register() {
                     <button disabled={errorMessage!=="" || fetching} type="submit" className="border-2 border-gray-600 p-2 mt-6">Invia</button>
                 </form>
                 <div className="div_next">
-                <Link className="link_next" href="/components/policy">Registrandoti accetti i Termini della Privacy Policy</Link>
+                <Link className="link_next" href="/policy">Registrandoti accetti i Termini della Privacy Policy</Link>
                 </div>
             </main>
         )

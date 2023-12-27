@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 connectDB();
 
 export async function GET(request: NextRequest, { params }: { params: { text: string } }){
-    console.log(params.text);
     try {
         const result = await Review.find({ tags: params.text })
         if(!result || result.length === 0) {

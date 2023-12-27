@@ -22,11 +22,9 @@ export default function Login() {
             password: pass,
             username: username
         }
-        //console.log("sending:", data)
         router.prefetch("/")
 
         axios.post("/api/auth/login", data).then(res => {
-            //console.log(res.data)
             reduxDispatcher(setUser(res.data.id))
             setFetching(false)
             router.push("/")
@@ -41,7 +39,7 @@ export default function Login() {
     if (fetching)
         return (
             <main className="">
-                <h2>Loading...</h2>
+                <h2>Caricamento...</h2>
             </main>
         )
     else
@@ -61,7 +59,7 @@ export default function Login() {
                         </label>
                         <button disabled={fetching} type="submit" className="border-2 border-gray-600 p-2 mt-6">Login</button>
                     </form>
-                    <Link className="link_next" href="/auth/register">Non hai un account ? Puoi registrati</Link>
+                    <Link className="link_next" href="/auth/register">Non hai un account? Clicca qui per registrati</Link>
                 </div>
             </main>
         )

@@ -1,7 +1,6 @@
 "use client"
 
 import axios from "axios";
-import { param } from "jquery";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -14,7 +13,6 @@ export default function Page({ params }: { params: { id: number } }) {
 
     useEffect(() => {
         axios.get(`/api/user/get/${params.id}`).then(res => {
-            //console.log(res.data)
             setUserData({
                 email: res.data.data.email,
                 name: res.data.data.name,
@@ -30,7 +28,6 @@ export default function Page({ params }: { params: { id: number } }) {
         })
 
         axios.get(`/api/user/getUserReviews/${params.id}`).then(res => {
-            //console.log(res.data)
             setUserReviews(res.data.reviews)
             setLoading(loading => [false, loading[1]])
         }).catch(err => {
@@ -44,14 +41,14 @@ export default function Page({ params }: { params: { id: number } }) {
     if (error)
         return (
             <main>
-                <h1>L'utente non esiste </h1>
+                <h1>L&apos;utente non esiste </h1>
             </main>
         )
     else
         return (
             <main>
                 <h1>Dati utente: </h1>
-                {loading[0] && loading[1] ?
+                {loading[0] || loading[1] ?
                     <h3>Caricamento...</h3>
                     :
                     <div className="flex flex-col space-y-3">
@@ -62,12 +59,12 @@ export default function Page({ params }: { params: { id: number } }) {
                         {
                             user_reviews?.length === 0 ?
                                 <div className="flex flex-col space-y-3 mt-4">
-                                    <h2>L'utente non ha ancora scritto recensioni</h2>
+                                    <h2>L&apos;utente non ha ancora scritto recensioni</h2>
 
                                 </div>
                                 :
                                 <div className="flex flex-col space-y-3 mt-4">
-                                    <h2>Recensioni dell'utente:</h2>
+                                    <h2>Recensioni dell&apos;utente:</h2>
                                     <ul>
                                         {user_reviews?.map((rev, idk) => (
                                             <li key={idk}><Link href={`/review/${rev.id}`}>{rev.title}</Link></li>

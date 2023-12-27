@@ -59,14 +59,14 @@ export default function Page() {
                     {
                         user_reviews?.length === 0 ?
                             <div className="flex flex-col space-y-3 mt-4">
-                                <h2>L'utente non ha ancora scritto recensioni</h2>
+                                <h2>L&apos;utente non ha ancora scritto recensioni</h2>
 
                             </div>
                             :
 
                             <div className="flex flex-col space-y-3 mt-4">
                                 <br />
-                                <h2>Recensioni dell'utente:</h2>
+                                <h2>Recensioni dell&apos;utente:</h2>
                                 <ul>
                                     {user_reviews?.map((rev, idk) => (
                                         <li key={idk}><Link href={`/review/${rev.id}`}>{rev.title}</Link></li>

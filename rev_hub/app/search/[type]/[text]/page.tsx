@@ -65,9 +65,7 @@ export default function SearchReview({ params }: { params: { type: string, text:
     else
         return (
             <main className="flex flex-col p-8 w-full">
-                <h1 className="text-[25px] font-bold">Search {(params.type ===
-                    "user") ? <>User</> : <>Review</>} for
-                    "{decodeURIComponent(params.text)}"</h1>
+                <h1 className="text-[25px] font-bold">Search {params.type === "user" ? <>User</> : <>Review</>} for &quot;{decodeURIComponent(params.text)}&quot;</h1>
                 <div className="flex space-x-2">
                     {
                         createList(params.type, results)

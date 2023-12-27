@@ -40,7 +40,7 @@ export default function CreateCredenziali() {
 
     return (
         <main className="">
-            <h2>Creazione di credenziali UniTn o Google per simulare l'uso di credenziali UniTn o Google per la creazione del profilo</h2>
+            <h2>Creazione di credenziali UniTn o Google per simulare l&apos;uso di credenziali UniTn o Google per la creazione del profilo</h2>
             <form className="w-3/4" onSubmit={handleSubmit}>
                 <label>
                     <span>Organizzazione:</span>
@@ -51,11 +51,11 @@ export default function CreateCredenziali() {
                     </select>
                 </label>
                 <label>
-                    <span>Name:</span>
+                    <span>Nome:</span>
                     <input required type="text" name="name" onChange={event => setName(event.target.value)} value={name} />
                 </label>
                 <label>
-                    <span>Surname:</span>
+                    <span>Cognome:</span>
                     <input required type="text" name="surname" onChange={event => setSurname(event.target.value)} value={surname} />
                 </label>
                 <label>

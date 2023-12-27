@@ -9,7 +9,7 @@ import Users from "@/models/userModel";
 
 connectDB();
 
-// visualizzazione + 1
+// visualizzazioni + 1
 async function updateViews(id: number, new_views: number): Promise<void> {
     try {
         const updated_review = await Review.updateOne(
@@ -17,22 +17,24 @@ async function updateViews(id: number, new_views: number): Promise<void> {
             { $set: { views: new_views } },
             { new: true }
         );
-        //return updated_review;
     } catch (error) {
-        //return null
     }
 }
 
 export async function GET(request: NextRequest, { params }: { params: { id: number } }) {
-    if (Number.isNaN(params.id))
+    if (Number.isNaN(params.id) || params.id < 1)
         return NextResponse.json({ message: "Argument not valid" }, { status: 400 })
 
+    // parallelizzazione delle promesse (in questo caso delle query)
     const [review, rates, comments, users] = await Promise.all([
         Review.findOne({ id: params.id }),
         Rate.find({ review_id: params.id }),
         Comment.find({ review_id: params.id }),
         Users.find({})
     ])
+    if (review === null || rates === null || comments === null || users === null)
+        return NextResponse.json({ message: "Failed to retive the review" }, { status: 400 })
+
     await updateViews(params.id, review.views + 1)
     comments.forEach(comment => {
         comment = {

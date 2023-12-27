@@ -13,7 +13,10 @@ export async function PUT(request: NextRequest) {
         const user_id = await validateJWT(request)
         const user = await User.findById(user_id)
         if (!user)
-            throw new Error("User not logged")
+            return NextResponse.json(
+                { message: "User not logged" },
+                { status: 400 }
+            )
 
         const req_data = await request.json()
         const existingRate = await Rate.findOne({ author_id: req_data.author_id, review_id: req_data.review_id });

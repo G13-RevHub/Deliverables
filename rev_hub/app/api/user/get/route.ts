@@ -11,6 +11,12 @@ export async function GET(request: NextRequest) {
         const user_id = await validateJWT(request)
         //retrieve the user without the password
         const user = await User.findById(user_id).select("-password")
+        if (user === null)
+            return NextResponse.json(
+                { message: "The user doesn't exist" },
+                { status: 400 }
+            )
+
         return NextResponse.json({ data: user })
     } catch (error: any) {
         return NextResponse.json(

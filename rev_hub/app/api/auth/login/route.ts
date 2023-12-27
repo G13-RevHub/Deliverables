@@ -12,14 +12,14 @@ export async function POST(request: NextRequest) {
 
         const user = await User.findOne({ username: req_data.username })
         if (!user) {
-            console.log("User does not exist")
+            //console.log("User does not exist")
             throw new Error("User does not exist")
         }
 
         // password match
         const passwordMatch = await bcrypt.compare(req_data.password, user.password)
         if (!passwordMatch) {
-            console.log("Invalid credentials")
+            //console.log("Invalid credentials")
             throw new Error("Invalid credentials")
         }
 
