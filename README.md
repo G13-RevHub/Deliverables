@@ -24,7 +24,11 @@ L'applicazione sviluppata contiene le seguenti funzionalità:
 
 Non sono invece state implementate le seguenti funzionalità:
  - tutta la parte di amministrazione e segnalazione delle recensioni
- - tutta la parte riguardante la creazione e lettura dei commenti delle recensioni
+ - tutta la parte riguardante la creazione e lettura dei commenti delle
+   recensioni
+ - integrazione delle recensioni con immagini
+ - follow di altri profili da parte di utenti autenticati
+ - modifica delle informazioni del profilo
 
 Data l'impossibilità nel concreto di usufruire dei sistemi di login tramite
 credenziali UniTn e/o Google, sono state create pagine ed api che permettessero
